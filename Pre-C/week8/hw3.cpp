@@ -4,31 +4,30 @@
 using namespace std;
 int main()
 {
+    double n = 0, k = 0;
 
-    int n = 0, k = 0;
-    cin >> n >> k;
-
-    int s = 200;
-    int i = n;
-    int y = 1;
-    while (i < s)
+    while (cin >> n >> k)
     {
-        i = i + n;
-        s = s + s * (k / 100.0);
-        y++;
-        if (y > 20)
+        double s = 200;
+        double i = n;
+        double y = 1;
+        while (i < s)
         {
-            break;
+            i = i + n;
+            s = s + s * (k / 100.0);
+            
+            y++;
+
+            if (y > 20){
+                break;
+            }
+        }
+        if (y <= 20){
+            cout << y << endl;
+        }
+        else{
+            cout << "Impossible" << endl;
         }
     }
-    if (y <= 20)
-    {
-        cout << y << endl;
-    }
-    else
-    {
-        cout << "Impossible" << endl;
-    }
-
     return 0;
 }

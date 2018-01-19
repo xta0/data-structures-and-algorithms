@@ -6,7 +6,6 @@ int main(){
     cin >> n >> k;
 
     int a[1000];
-    memset(a,0,1000);
 
     for(int i=0; i<n; i++){
         cin>>a[i];
