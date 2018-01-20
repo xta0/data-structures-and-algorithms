@@ -30,10 +30,7 @@ int main()
             u++;
         }
     }
-    cout << a <<endl;
-    cout << e <<endl;
-    cout << i <<endl;
-    cout << o <<endl;
-    cout << u <<endl;
+    cout <<a<<" "<<e<<" "<<i<<" "<<o<<" "<<u;
+
     return 0;
 }

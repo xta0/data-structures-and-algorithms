@@ -12,7 +12,10 @@ int main()
 
     int i = 0;
     char result;
-    while (s1[i] != '\0' && ((s1[i] == s2[i]) || abs(s1[i] - s2[i]) == 32))
+    while (
+        (s1[i] != '\0' && s2[i] != '\0') && 
+        ((s1[i] == s2[i]) || (abs(s1[i] - s2[i]) == 32))
+    )
     {
         i++;
     }
