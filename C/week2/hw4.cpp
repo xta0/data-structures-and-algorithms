@@ -96,7 +96,12 @@ int main()
             {
                 //闰年
                 bool leap = is_leap_year(year);
-                day++;
+                if(leap){
+                    day++;
+                }else{
+                    day=1;
+                }
+                
             }
             else
             {
