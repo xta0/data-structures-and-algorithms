@@ -11,7 +11,7 @@
                 "-std=c++11",
                 "-stdlib=libc++",
                 "-g",
-                "hw6.cpp"
+                "hw5.cpp"
             ],
             "group": {
                 "kind": "build",

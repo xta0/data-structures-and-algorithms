@@ -8,6 +8,8 @@
         "string": "cpp",
         "string_view": "cpp",
         "system_error": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "istream": "cpp",
+        "iosfwd": "cpp"
     }
 }
