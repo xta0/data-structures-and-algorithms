@@ -99,6 +99,7 @@ int main()
                 if(leap){
                     day++;
                 }else{
+                    month++;
                     day=1;
                 }
                 
