@@ -17,8 +17,8 @@ void swap_word(char *p, int s, int len)
 int main()
 {
 
-    char input[100] = {0};
-    cin.getline(input, 100);
+    char input[500];
+    cin.getline(input, 500);
     unsigned long l = strlen(input);
     input[l] = ' ';
 

@@ -1,27 +1,59 @@
 #include <iostream>
 #include <string.h>
+
 using namespace std;
 
-char token;
-int recursion(char* s,int l){
-    int r  = 0;
-    char c = s[l];
-    if(c == token ){
-        r  =recursion(s, l+1);
-        cout<<l<<" "<<r<<endl;
-        return recursion(s,r+1);
+typedef struct {
+    int r;
+    bool b;
+}RET;
+
+char output[100];
+int x=0;
+RET find(char* str, int l){
+    char c = str[l];
+    if(c=='\0'){
+        return {l,false};
+    }
+    if(c == '('){
+        x++;
+        RET result = find(str, l+1);
+        if(result.b == true){
+            x--;
+            return find(str,result.r+1);
+        }else{
+            output[l]='$';
+            return{l,false};
+        }
+        
+    }else if(c==')'){
+        if(x <= 0){
+            output[l]='?';
+            return find(str,l+1);
+        }else{
+            return {l,true};
+        }
     }else{
-        return l;
+        return find(str,l+1);
     }
 }
 
 int main(){
-    char str[101] = {0};
-    cin >> str;
-    token = str[0];
-    int r = recursion(str,1);
-    cout << "0 " << r << endl;
+    
+    char input[100]={0};
+    cin.getline(input,100);
+    cout << input <<endl;
+    find(input,0);
+    
+    for(int i=0;i<strlen(input);i++){
+        char c = output[i];
+        if(c!='$' && c!='?'){
+            cout<<" ";
+        }else{
+            cout<<c;
+        }
+    }
+    cout<<endl;
     
     return 0;
-    
 }
