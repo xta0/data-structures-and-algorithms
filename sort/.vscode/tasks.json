@@ -6,12 +6,9 @@
         {
             "label": "compile",
             "type": "shell",
-            "command": "clang++",
+            "command": "clang",
             "args": [
-                "-std=c++11",
-                "-stdlib=libc++",
-                "-g",
-                "hw3.cpp"
+                "bubble_sort.c"
             ],
             "group": {
                 "kind": "build",
