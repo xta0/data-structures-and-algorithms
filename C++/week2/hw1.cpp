@@ -2,7 +2,7 @@
 #include <string>
 #include <string.h>
 #include <stdlib.h>
-
+#include <vector>
 
 using namespace std;
 
@@ -59,45 +59,49 @@ private:
 
 int main(){
 
-    char input[1000];
-    cin>>input;
 
-    char* n=strtok(input,",");
-    string name(n); 
-    char* a = strtok(NULL,",");
-    int age = 0;
-    if(a){
-        age=atoi(a);
-    }
-    string id="";
-    char* i=strtok(NULL,",");
-    if(i){
-        id=string(i);
-    }
-    int grade1=0,grade2=0,grade3=0,grade4=0;
-    char* g1=strtok(NULL,",");
-    if(g1){
-        grade1 = atoi(g1);
-    }
-    char* g2=strtok(NULL,",");
-      if(g2){
-        grade2 = atoi(g2);
-    }
-    char* g3=strtok(NULL,",");
-      if(g3){
-        grade3 = atoi(g3);
-    }
-    char* g4=strtok(NULL,",");
-      if(g4){
-        grade4 = atoi(g4);
-    }
+    
 
-    Student st(name,age,id,grade1,grade2,grade3,grade4);
+    // char input[1000];
+    // cin>>input;
 
-    cout<<st.getName()<<","
-    <<st.getAge()<<","
-    <<st.getId()<<","
-    <<st.getAvgGrade();
+    // char* n=strtok(input,",");
+    // string name(n); y
+
+    // char* a = strtok(NULL,",");
+    // int age = 0;
+    // if(a){
+    //     age=atoi(a);
+    // }
+    // string id="";
+    // char* i=strtok(NULL,",");
+    // if(i){
+    //     id=string(i);
+    // }
+    // int grade1=0,grade2=0,grade3=0,grade4=0;
+    // char* g1=strtok(NULL,",");
+    // if(g1){
+    //     grade1 = atoi(g1);
+    // }
+    // char* g2=strtok(NULL,",");
+    //   if(g2){
+    //     grade2 = atoi(g2);
+    // }
+    // char* g3=strtok(NULL,",");
+    //   if(g3){
+    //     grade3 = atoi(g3);
+    // }
+    // char* g4=strtok(NULL,",");
+    //   if(g4){
+    //     grade4 = atoi(g4);
+    // }
+
+    // Student st(name,age,id,grade1,grade2,grade3,grade4);
+
+    // cout<<st.getName()<<","
+    // <<st.getAge()<<","
+    // <<st.getId()<<","
+    // <<st.getAvgGrade();
 
     return 0;
 }
