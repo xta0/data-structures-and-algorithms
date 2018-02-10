@@ -1,11 +1,10 @@
 #include <string>
 #include <string.h>
 #include <ctype.h>
-#include <stdlib.h>
 #include <iostream>
 #include <vector>
 #include <queue>
-
+#include <sstream>
 using namespace std;
 
 /*
@@ -30,6 +29,18 @@ over
  35a8
  */
 
+string toString(int num){
+    stringstream ss;
+    ss << num;
+    return ss.str();
+}
+
+int  toNumber(string str){
+    stringstream ss(str);
+    int num;
+    ss >> num;
+    return num;
+}
 
 vector<string> strings;
 queue<string> tokens;
@@ -38,10 +49,10 @@ queue<string> tokens;
  */
 string copy(string arg1, string arg2, string arg3){
     string substr="";
-    int n = stoi(arg1)-1;
-    int l = stoi(arg3);
+    int n = toNumber(arg1)-1;
+    int l = toNumber(arg3);
     string s = strings[n];
-    int x = stoi(arg2);
+    int x = toNumber(arg2);
     if(x != string::npos){
         substr = s.substr(x,l);
         //        cout<<__func__<<": find substring: "<<substr<<endl;
@@ -53,7 +64,8 @@ string copy(string arg1, string arg2, string arg3){
 }
 bool is_number(const string& s)
 {
-    for(char c : s){
+    for(int i=0;i<s.length();++i){
+        char c = s[i];
         if(!isdigit(c)){
             return false;
         }
@@ -67,11 +79,11 @@ string add (string arg1, string arg2){
     
     string ret="";
     if(is_number(arg1) && is_number(arg2)){
-        int a1 = stoi(arg1);
-        int a2 = stoi(arg2);
+        int a1 = toNumber(arg1);
+        int a2 = toNumber(arg2);
         if((a1>0&&a1<99999) && (a2>0&&a2<99999)){
             int r = a1+a2;
-            ret = to_string(r);
+            ret = toString(r);
             
         }else{
             ret = arg1+arg2;
@@ -88,15 +100,15 @@ string add (string arg1, string arg2){
  */
 string find(string arg1, string arg2 ){
     size_t ret = 0 ;
-    int n = stoi(arg2)-1;
+    int n = toNumber(arg2)-1;
     string x = strings[n];
     ret = x.find_first_of(arg1);
     if(ret != string::npos){
         //        cout<<__func__<<": found sub string: "<<arg1<<" in: "<<x<<" at: "<<ret<<endl;
-        return to_string(ret);
+        return toString(ret);
     }else{
         //        cout<<__func__<<": can't find sub string: "<<arg1<<" return length: "<<ret<<endl;
-        return to_string(x.size());
+        return toString(x.size());
     }
 }
 
@@ -105,23 +117,23 @@ string find(string arg1, string arg2 ){
  */
 string rfind(string arg1, string arg2){
     size_t ret = 0;
-    int n = stoi(arg2)-1;
+    int n = toNumber(arg2)-1;
     string x = strings[n];
     ret = x.find_last_of(arg1);
     if(ret != string::npos){
         //        cout<<__func__<<": found sub string: "<<arg1<<" in: "<<x<<" at: "<<ret<<endl;
-        return to_string(ret);
+        return toString(ret);
     }else{
         //        cout<<__func__<<": can't find sub string: "<<arg1<<" return length: "<<ret<<endl;
-        return to_string(x.size());
+        return toString(x.size());
     }
 }
 
 //insert S N X：在第N个字符串的第X个字符位置中插入S字符串。
 string insert(string arg1, string arg2 , string arg3){
     
-    int n = stoi(arg2)-1;
-    int x = stoi(arg3);
+    int n = toNumber(arg2)-1;
+    int x = toNumber(arg3);
     string &t = strings[n];
     t.insert(x,arg1);
     return "";
@@ -129,28 +141,31 @@ string insert(string arg1, string arg2 , string arg3){
 
 //reset S N：将第N个字符串变为S。
 string  reset (string arg1, string arg2){
-    int i = 0;
-    int n = stoi(arg2)-1;
-    for(auto &x : strings){
-        if(i == n){
-            x = arg1;
+    // int i = 0;
+    int n = toNumber(arg2)-1;
+    int index = -1;
+    for(int i=0;i<strings.size();++i){
+        if(i==n){
+            index=i;
             break;
         }
-        i++;
+    }
+    if(index != -1){
+        strings[index] = arg1;
     }
     return "";
 }
 
 //print N：打印输出第N个字符串。
 string print(string arg1){
-    int n = stoi(arg1)-1;
+    int n = toNumber(arg1)-1;
     cout << strings[n]<<endl;
     return "";
 }
 //printall：打印输出所有字符串。
 string printall(){
-    for(auto &x : strings){
-        cout<<x<<endl;
+    for(int i=0;i<strings.size();++i){
+        cout<<strings[i]<<endl;
     }
     return "";
 }
@@ -189,7 +204,10 @@ class Node{
     int args;
 public:
     vector<Node* > children;
-    Node():Node(""){}
+    // Node(){
+    //     compound=false;
+    //     content="";
+    // }
     Node(string token){
         content = token;
         compound = isCompoundToken(token);
@@ -210,7 +228,8 @@ public:
     
     void log(){
         cout<<"["<<content<<"]"<<endl;
-        for(Node* node : children) {
+        for(int i=0;i<children.size();++i){
+            Node* node = children[i];
             if(node->isCompound()){
                 node->log();
             }else{
@@ -220,7 +239,8 @@ public:
     }
     string calculate(){
         vector<string> tmp(0);
-        for(Node* node : children){
+        for(int i=0;i<children.size();++i){
+            Node* node = children[i];
             if(node->compound){
                 string arg = node->calculate();
                 tmp.push_back(arg);
@@ -284,7 +304,7 @@ int main(){
         }
         char* buffer = (char* )expression.c_str();
         char *token = strtok(buffer, " ");
-        Node* root = new Node{string(token)};
+        Node* root = new Node(string(token));
         while (token)
         {
             tokens.push(string(token));
