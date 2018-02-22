@@ -31,13 +31,24 @@ int main()
 // 在此处补充你的代码
     sort(v.begin(),v.end());
     for( i = v.begin(); i < v.end() - 1;i ++ )
-        for( j=v.begin()+1; j<v.end()-1; j++) {
+        for( j=i; j != v.end(); j++) {
             if(binary_search(v.begin(),v.end(),Point( j->x, i->y)) &&
                 binary_search(v.begin(),v.end(),Point( i->x, j->y)) &&
-                ____________________________________________ &&
-                ____________________________________________ ){
-                nTotalNum ++;
+                (j->x > i->x) &&
+                (j->y > i->y)){
+                    nTotalNum ++;
+                }
         }
     cout << nTotalNum;
     return 0;
 }
+
+/*
+6
+2 3
+2 5
+4 5
+4 4
+2 4
+4 3
+*/
