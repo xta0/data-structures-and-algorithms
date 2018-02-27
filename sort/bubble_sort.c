@@ -54,9 +54,7 @@ int main()
     }
     
     print_array("before sort: ", a, 7);
-    
     bubble_sort(a, 7);
-    
     print_array("after sort: ", a, 7);
     
     return 1;

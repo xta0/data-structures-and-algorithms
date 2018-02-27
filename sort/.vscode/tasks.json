@@ -8,7 +8,7 @@
             "type": "shell",
             "command": "clang",
             "args": [
-                "bubble_sort.c"
+                "merge_sort.c"
             ],
             "group": {
                 "kind": "build",
