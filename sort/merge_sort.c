@@ -1,61 +1,56 @@
 #include <stdio.h>
 #include "header.h"
 
-typedef struct {
-    int *p;
-    int len;
-}TUPLE;
-
-TUPLE merge_sort(int* p, int n){
-
-    if(n>2){
-        TUPLE t1 = merge_sort(p,n/2);
-        TUPLE t2 = merge_sort(p+n/2-1, n-n/2);
-        //merge
-        int len1 = t1.len;
-        int len2 = t2.len;
-        int i=0,j=0;
-        for(int k=0;k<len1+len2;k++){
-            if(t1.p[i] < t2.p[j]){
-                
-                
+void merge(int a1[], int a2[], int len1, int len2, int* p){
+    print_array("\nbefore merge: a1", a1, len1);
+    print_array("\nbefore merge: a2", a2, len2);
+    int i=0,j=0;
+    int len = len1 + len2;
+    for(int k=0;k<len;++k ){
+        if(i>=len1 && j<len2){
+            p[k] = a2[j];
+            j++;
+            
+        }else if (j>=len2 && i<len1){
+            p[k] = a1[i];
+            i++;
+        }else{
+            if(a1[i] > a2[j]){
+                p[k] = a2[j];
+                j++;
             }else{
-                //swap
-                int tmp = t1.p[i];
-                t1.p[i] = t2.p[j];
-                t2.p[j] = tmp;
+                p[k] = a1[i];
                 i++;
             }
         }
-        
-    }else{
-        if(n == 1){
-            return (TUPLE){p,1};
-        }
-        else if(n==2){
-            if(p[0] > p[1]){
-                //swap
-                int tmp = p[0];
-                p[0] = p[1];
-                p[1] = tmp;
-            }
-            return (TUPLE){p,2};
-        }
-        else{
-            printf("wrong!");
-            return (TUPLE){p,0};
+    }
+    print_array("\nafter merge: p", p, len);
+    printf("\n----");
+}
+
+void sort(int* a, int len){
+    if(len >= 2){
+        int *p1 = a;
+        int *p2 = a+len/2;
+        int len1 = len/2;
+        int len2 = len-len1;
+        sort(p1,len1);
+        sort(p2,len2);
+        int b[len];
+        merge(p1, p2,len1, len2, b);
+        for(int i=0; i<len; i++){
+            a[i] = b[i];
         }
     }
 }
 
 
-
 int main(){
 
-    int a[8] = {4,6,5,2,3,1,7,8};
-    print_array("before sort", a, 8);
-    TUPLE ret = merge_sort(a,8);
-    print_array("after sort",ret.p,ret.len);
+    int a[9] = {4,6,5,2,9,3,1,7,8};
+    print_array("before sort", a, 9);
+    sort(a,9);
+    print_array("after sort",a,9);
 
     return 0;
 }
