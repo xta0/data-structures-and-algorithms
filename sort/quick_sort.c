@@ -10,13 +10,13 @@ void sort(int *input, int l, int r)
     int i=l;
     int j=r;
     while(i!=j){
-        while(input[j]>=pivot && j<i){
+        while(input[j]>=pivot && j>i){
             j--;
         }
-        while(input[i]<=pivot && j<i){
+        while(input[i]<=pivot && j>i){
             i++;
         }
-        if(j<i){
+        if(j>i){
             //swap
             int tmp = input[i];
             input[i] = input[j];
