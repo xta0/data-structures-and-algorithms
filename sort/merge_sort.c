@@ -36,7 +36,7 @@ void sort(int* a, int len){
         int len2 = len-len1;
         sort(p1,len1);
         sort(p2,len2);
-        int b[len];
+        int b[len]; //merge to b
         merge(p1, p2,len1, len2, b);
         for(int i=0; i<len; i++){
             a[i] = b[i];
