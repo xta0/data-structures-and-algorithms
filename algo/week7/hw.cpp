@@ -1,13 +1,15 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-
-int limit;
-int MAX;
-int num;
-int r;
-
 using namespace std;
+
+int limit=-1;
+int MAX=0;
+bool error = true;
+bool rejected = false;
+int result_sum = 0;
+vector<int> result_list;
+
 
 struct node{
     int left;
@@ -30,7 +32,8 @@ struct node{
 
 ostream& operator<<(ostream& o, vector<int>& v){
     o<<"[ ";
-    for(auto x : v){
+    for(int i=0;i<v.size();++i){
+        int x = v[i];
         cout<<x<<",";
     }
     o<<" ]";
@@ -42,7 +45,8 @@ void log_tree(node* root){
     cout<<"left: "<<root->left<<"| right: "<<root->right<<endl;
     cout<<"value: "<<root->value()<<endl;
     cout<<"elements: "<<root->elements<<endl;
-    for(auto sub : root->children){
+    for(int i=0;i<root->children.size();++i){
+        node* sub = root->children[i];
         log_tree(sub);
     }
 }
@@ -61,28 +65,76 @@ void tree(node* root){
         i++;
         factor = pow(10.0, i);
     }
-
-    for(auto node : root->children){
-        tree(node);
+    
+    for(int i=0;i<root->children.size();++i){
+        node* sub = root->children[i];
+        tree(sub);
     }
 }
 void calculate(node* root){
+    for(int i=0;i<root->children.size();++i){
+        node* sub = root->children[i];
+        calculate(sub);
+    }
+    int value = root->value();
+    if(value <= limit){
+        if(value > MAX ){
+            MAX = value;
+            result_list = root->elements;
+            result_sum = root->value();
+            rejected = false;
+            error = false;
+        }else if (value == MAX){
+            rejected = true;
+        }
+    }
+}
+void clear_state(){
     
+    rejected = false;
+    error = true;
+    result_list.clear();
+    result_sum = 0;
+    limit=-1;
+    MAX=0;
 }
 using namespace std;
 int main(){
-    
-    limit = num  = -1;
-    while(limit != 0 && num != 0){
+    int num;
+    while(true ){
+        clear_state();
         cin >> limit >> num;
-        if( limit == num){
+        if(limit == 0 && num == 0){
             break;
+        }
+        if( limit == num){
+            cout<<num<<" "<<limit<<endl;
+            continue;
         }else{
             node* root = new node(num,0);
             tree(root);
-            log_tree(root);
+//            log_tree(root);
+            calculate(root);
+            if(error){
+                cout<<"error"<<endl;
+                continue;
+            }
+            if(!error && rejected){
+                cout<<"rejected"<<endl;
+                continue;
+            }
+            cout<<result_sum;
+            if(result_list.size() > 0){
+                for(int i=0;i<result_list.size();++i){
+                    cout<<" "<<result_list[i];
+                }
+            }else{
+                cout<<" "<<root->value();
+            }
+            cout<<endl;
         }
     }
     
     return 0;
 }
+
