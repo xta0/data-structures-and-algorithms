@@ -12,7 +12,7 @@
                 "-stdlib=libc++",
                 "-Wall",
                 "-g",
-                "quick_sort.c"
+                "${file}"
             ],
             "group": {
                 "kind": "build",
