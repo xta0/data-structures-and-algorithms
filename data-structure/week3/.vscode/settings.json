@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "stack": "cpp"
+        "stack": "cpp",
+        "__locale": "cpp"
     }
 }
