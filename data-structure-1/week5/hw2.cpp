@@ -2,40 +2,35 @@
 #include <queue>
 using namespace std;
 
-
-template <class T>
-class TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode* parent;
-    
-public:
-    TreeNode(int x): val(x){}
-};
-
-template<class T>
 class Heap{
-
-TreeNode<T>* root = NULL;
-
+private:
+    queue<int> tree;
+    int left(int i){
+        return tree[2*i + 1];
+    }
 public:
     Heap(){}
-    void push(T val){
-        if(!root){
-            root = new TreeNode<T>(val);
-        }else{
-            //push
-        }
+    void push(int val){
+        tree.push(val);
+        //compare 
+
     }
     void pop(){
-        
+        cout<<tree.front()<<endl;
+        tree.pop();
+    }
+    int top(){
+        return tree.front();
+    }
+private:
+    void build(){
+
     }
 };
 
 
 int main(){
-    Heap<int>* heap;
+    Heap heap;
     int t;
     cin >> t;
     for(int i=0;i<t;++i){
@@ -46,10 +41,10 @@ int main(){
             cin >> cmd;
             if(cmd == 1){
                 cin >> num;
-//                qq.push(num);
+                heap.push(num);
             }else if(cmd == 2){
-//                cout<<qq.top()<<endl;
-//                qq.pop();
+                cout<<heap.top()<<endl;
+                heap.pop();
             }
             n--;
         }
