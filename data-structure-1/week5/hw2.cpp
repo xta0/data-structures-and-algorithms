@@ -4,20 +4,20 @@ using namespace std;
 
 class Heap{
 private:
-    queue<int> tree;
+    vector<int> tree;
     int left(int i){
         return tree[2*i + 1];
     }
 public:
     Heap(){}
     void push(int val){
-        tree.push(val);
+        tree.push_back(val);
         //compare 
 
     }
     void pop(){
         cout<<tree.front()<<endl;
-        tree.pop();
+        // tree.pop();
     }
     int top(){
         return tree.front();
