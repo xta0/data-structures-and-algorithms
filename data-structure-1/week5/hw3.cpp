@@ -35,89 +35,62 @@ void PostOrder(TreeNode* root){
         cout<<root->val;
     }
 }
+void deleteTree(TreeNode* root){
+    if(!root){
+        return;
+    }
+    deleteTree(root->left);
+    deleteTree(root->right);
+    
+    delete root;
+    root = NULL;
+}
+
+queue<string>qq;
+
+TreeNode* buildTree(size_t level){
+    if(qq.empty()){
+        return NULL;
+    }
+    string str = qq.front();
+    size_t len = str.length()-1;
+    
+    if(len == level){
+        char ch = str[len];
+        qq.pop();
+        if(ch == '*'){
+            return NULL;
+        }
+        TreeNode* node = new TreeNode(string(1,ch));
+        node->left = buildTree(level+1);
+        node->right = buildTree(level+1);
+        
+        return node;
+    }else{
+        return NULL;
+    }
+}
 
 
 int main(){
     int n = 0;
     cin >>n;
-    cin.get();
     for(int i=0;i<n;++i){
-        string str("");
         TreeNode* root = NULL;
-        TreeNode* tmp = NULL;
-        int layer = 0;
-        while (getline(cin , str)) {
-            if(str != "0"){
-                if(!root){
-                    root = new TreeNode(str);
-                    tmp = root;
-                }else{
-                    int len = (int)str.length();
-                    char c = str[len-1];
-                    len -= 1;
-                    TreeNode* node = new TreeNode(string(1,c));
-                    if(len > layer){
-                        node -> parent = tmp;
-                        if(tmp->left == NULL){
-                            tmp -> left = node;
-                        }else{
-                            tmp->right = node;
-                        }
-                        if(c != '*'){
-                            layer++;
-                            tmp = node;
-                        }
-                    }
-                    else if(len == layer){
-                        if(c!='*'){
-                            TreeNode* parent = tmp->parent;
-                            if(parent->left == NULL){
-                                parent -> left = node;
-                            }else{
-                                parent->right = node;
-                            }
-                            node ->parent = tmp;
-                            tmp = node;
-                        }
-                    }
-                    else{
-                        while(tmp->parent){
-                            tmp = tmp->parent;
-                            layer --;
-                            if(layer == len){
-                                break;
-                            }
-                        }
-                        TreeNode* parent = tmp->parent;
-                        node->parent = parent;
-                        if(parent->left == NULL){
-                            parent->left = node;
-                            tmp = node;
-                        }else{
-                            parent->right = node;
-                            tmp = node;
-                        }
-                    }
-                }
-            }else{
-                break;
-            }
+        string input;
+        cin>>input;
+        while(input != "0"){
+            qq.push(input);
+            cin>>input;
         }
         
-        preOrder(root);
+        root = buildTree(0);
+        preOrder(root); cout<<endl;
+        PostOrder(root); cout<<endl;
+        InOrder(root); cout<<endl;
         cout<<endl;
-        PostOrder(root);
-        cout<<endl;
-        InOrder(root);
-        cout<<endl;
-        
-        if(i!=n-1){
-            cout<<endl;
-        }
-        
+        deleteTree(root);
     }
-   
-    
     
     return 0;
 }
