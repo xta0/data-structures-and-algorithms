@@ -47,11 +47,14 @@ HuffmanTreeNode* buildHuffmanTree(vector<int>& weight){
     return root;
 }
 
-void traverse(HuffmanTreeNode* root, string codes, map<int,string>dictionary){
+typedef multimap<int, vector<int> > mmid;
+void traverse(HuffmanTreeNode* root, vector<int>& codes, mmid& dictionary){
     
     if(root&&root->left==NULL&&root->right==NULL){
-        cout<<root->weight<<": ";
-        cout<<codes<<endl;
+//        cout<<root->weight<<": ";
+//        cout<<codes<<endl;
+////        dictionary[root->weight] = codes;
+        dictionary.insert(mmid::value_type(root->weight, codes));
     }
     
     if(root->left){
@@ -59,7 +62,7 @@ void traverse(HuffmanTreeNode* root, string codes, map<int,string>dictionary){
         traverse(root->left,codes,dictionary);
         codes.pop_back(); //回溯
     }
-   
+    
     if(root->right){
         codes.push_back('1');
         traverse(root->right, codes,dictionary);
@@ -78,15 +81,17 @@ int main(){
     std::sort(vec.begin(), vec.end());
     
     HuffmanTreeNode* root = buildHuffmanTree(vec);
-    string codes="";
-    map<int,string> dict;
+    vector<int> codes;
+    mmid dict;
     traverse(root, codes,dict);
     int sum = 0;
-    for(auto pair : dict){
+    mmid::iterator it = dict.begin();
+    for(;it != dict.end(); ++it){
+        mmid::value_type pair = *it;
         int k = pair.first;
-        string code =pair.second;
-        sum += k*code.length();
+        vector<int> code =pair.second;
+        sum += k*code.size();
     }
-    
+    cout<<sum<<endl;
     return 0;
 }
