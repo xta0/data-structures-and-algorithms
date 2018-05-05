@@ -3,7 +3,6 @@
 #include <map>
 #include <vector>
 #include <queue>
-#include <stack>
 #include <algorithm>
 using namespace std;
 
@@ -48,26 +47,23 @@ HuffmanTreeNode* buildHuffmanTree(vector<int>& weight){
     return root;
 }
 
-void traverse(HuffmanTreeNode* root, vector<int>& codes){
+void traverse(HuffmanTreeNode* root, string codes, map<int,string>dictionary){
     
     if(root&&root->left==NULL&&root->right==NULL){
         cout<<root->weight<<": ";
-        for(auto n:codes){
-            cout<<n;
-        }
-        cout<<endl;
+        cout<<codes<<endl;
     }
     
     if(root->left){
-        codes.push_back(0);
-        traverse(root->left,codes);
-        codes.pop_back();
+        codes.push_back('0');
+        traverse(root->left,codes,dictionary);
+        codes.pop_back(); //回溯
     }
    
     if(root->right){
-        codes.push_back(1);
-        traverse(root->right, codes);
-        codes.pop_back();
+        codes.push_back('1');
+        traverse(root->right, codes,dictionary);
+        codes.pop_back();//回溯
     }
 };
 
@@ -82,8 +78,15 @@ int main(){
     std::sort(vec.begin(), vec.end());
     
     HuffmanTreeNode* root = buildHuffmanTree(vec);
-    vector<int> codes;
-    traverse(root, codes);
+    string codes="";
+    map<int,string> dict;
+    traverse(root, codes,dict);
+    int sum = 0;
+    for(auto pair : dict){
+        int k = pair.first;
+        string code =pair.second;
+        sum += k*code.length();
+    }
     
     return 0;
 }
