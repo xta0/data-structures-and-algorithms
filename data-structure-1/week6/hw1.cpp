@@ -6,8 +6,6 @@
 #include <algorithm>
 using namespace std;
 
-
-
 struct HuffmanTreeNode{
     HuffmanTreeNode* left = NULL;
     HuffmanTreeNode* right = NULL;
