@@ -4,9 +4,33 @@
 
 Solution for the whole [Specialization Course](https://www.coursera.org/specializations/biancheng-suanfa)
 
-### [Introduction of Computaiton](https://github.com/xta0/data-structures-and-algorithmss/tree/master/Pre-C)
-### [C](https://github.com/xta0/data-structures-and-algorithmss/tree/master/C)
-### [C++](https://github.com/xta0/data-structures-and-algorithmss/tree/master/C%2B%2B)
+### [Introduction of Computaiton](https://github.com/xta0/data-structures-and-algorithms/tree/master/Intro-C)
+
+- Week1 | Introduction
+- Week2 | History & Future of Computer Science
+- Week3 | How Computer Program Works
+- Week4 | Introduction to C Program
+- Week5 | Solving Real World Problems
+- Week6 | C Program Part 1
+- Week7 | C Program Part 2
+- Week8 | C Program Part 3
+- Week9 | C Program Part 4
+- Week10 | C Program Part 5
+- Week11 | C Program Part 6
+- Week12 | C Program Part 7
+
+
+### [C](https://github.com/xta0/data-structures-and-algorithms/tree/master/C)
+
+- Week1 | Introduction
+- Week2 | C Function
+- Week3 | Recursion
+- Week4 | Ponters Part 1
+- Week5 | Ponters Part 2
+- Week6 | Ponters Part 3
+- Week7 | C Struct 
+
+### [C++](https://github.com/xta0/data-structures-and-algorithms/tree/master/C%2B%2B)
 
 - Week2 | From C to C++    
 - Week3 | OOP
@@ -20,7 +44,7 @@ Solution for the whole [Specialization Course](https://www.coursera.org/speciali
 - Week11| C++ 11 Features part 2
 
 
-### [Algorithm Foundation](https://github.com/xta0/data-structures-and-algorithmss/tree/master/algo)
+### [Algorithm Foundation](https://github.com/xta0/data-structures-and-algorithms/tree/master/algorithm)
 
 - Week1 | Introduction
 - Week2 | Enumeration
@@ -36,7 +60,7 @@ Solution for the whole [Specialization Course](https://www.coursera.org/speciali
 - Week9 | Greedy & Binary Search
 
 
-### [Data Structure Part 1](https://github.com/xta0/data-structures-and-algorithmss/tree/master/data-structure-1)
+### [Data Structure Part 1](https://github.com/xta0/data-structures-and-algorithms/tree/master/data-structure-1)
 
 - Week1 | Algorithm Analysis
     - Big (O)
@@ -76,7 +100,7 @@ Solution for the whole [Specialization Course](https://www.coursera.org/speciali
     - Minimum Spanning Tree
     - Topology Sort
 
-### Data Structure Part 2
+### Data Structure Part 2(https://github.com/xta0/data-structures-and-algorithms/tree/master/data-structure-2)
 
 - Week1 | Introcution
 - Week2 | Sort Part 1
