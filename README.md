@@ -100,7 +100,7 @@ Solution for the whole [Specialization Course](https://www.coursera.org/speciali
     - Minimum Spanning Tree
     - Topology Sort
 
-### Data Structure Part 2(https://github.com/xta0/data-structures-and-algorithms/tree/master/data-structure-2)
+### [Data Structure Part 2](https://github.com/xta0/data-structures-and-algorithms/tree/master/data-structure-2)
 
 - Week1 | Introcution
 - Week2 | Sort Part 1
