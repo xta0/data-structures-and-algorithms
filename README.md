@@ -1,8 +1,8 @@
 ## Data Structures and Algorithms Specialization Course 
 
-Solution for the whole [Specialization Course](https://www.coursera.org/specializations/biancheng-suanfa)
-
 ![](./pku_logo.png)
+
+Solution for the whole [Specialization Course](https://www.coursera.org/specializations/biancheng-suanfa)
 
 ### [Introduction of Computaiton](https://github.com/xta0/data-structures-and-algorithmss/tree/master/Pre-C)
 ### [C](https://github.com/xta0/data-structures-and-algorithmss/tree/master/C)
